@@ -24,3 +24,30 @@
 
 ### What I did not understand
 - [] Kenapa saya harus menggunakan Thymeleaf?
+
+
+### What I have learned today (1 Oct 2020)
+
+1. Cobalah untuk menambahkan sebuah Hotel dengan mengakses link berikut:
+`http://localhost:8080/hotel/addidHotel=1&namaHotel=Papa%20APAP&alamat=Quanta%20Fasilkom&noTelepon= 081xxx`
+> Terjadi error **Whitelabel Error Page** karena template _add-hotel.html_ yang di-_return_ belom dibuat
+
+2. Menurut kamu anotasi @Autowired pada class Controller tersebut merupakan implementasi dari konsep apa? Dan jelaskan secara singkat cara kerja @Autowired tersebut dalam konteks service dan controller yang telah kamu buat
+> Notasi @Autowired merupakan implementasi dari konsep ***Dependency Injection***. Dengan menggunakan @Autowired kita tidak perlu lagi mendefinisikan method getter, setter, dan constructor. Semua field/property yang diberikan notasi tersebut akan diisikan oleh Spring dengan object bertipe-data sesuai.
+
+3. Cobalah untuk menambahkan sebuah Hotel dengan mengakses link berikut:
+`http://localhost:8080/hotel/add?idHotel=1&namaHotel=Papa%20APAP&alamat=Quanta%20Fasilkom`
+Apa yang terjadi? Jelaskan mengapa hal tersebut dapat terjadi.
+> Terjadi error **Whitelabel Error Page** karena ada satu parameter yang tidak diberikan yaitu No Telepon.
+
+4. Jika Papa APAP ingin melihat Hotel dengan nama Papa APAP, link apa yang harus diakses?
+> Link yang harus diakses adalah `http://localhost:8080/hotel/view?idHotel=1`
+
+5. Tambahkan 1 contoh Hotel lainnya sesukamu. Lalu cobalah untuk mengakses:
+`http://localhost:8080/hotel/viewall`
+apa yang akan ditampilkan? Sertakan juga bukti screenshotmu.
+> ![ss apap](https://user-images.githubusercontent.com/45789642/94834929-3abd5400-043b-11eb-829d-beb1336e089d.png)
+
+### What I did not understand
+- Perbedaan @Requestmapping dan @Getmapping
+> Perbedaannya adalah jika requestmapping akan menerima parameter yang masuk dan akan routing sesuai parameter yang ditulis.
