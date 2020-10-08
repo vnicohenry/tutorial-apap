@@ -76,7 +76,12 @@ public class HotelController {
         // Add variabel HotelModel ke 'hotel' untuk dirender pada thymeleaf
         model.addAttribute("hotel", hotel);
 
-        return "view-hotel";
+        if(hotel != null){
+            return "view-hotel";
+        }
+        else{
+            return "notFound";
+        }
     }
 
     @RequestMapping("/hotel/update/id-hotel/{idHotel}/no-telepon/{noTelepon}")
@@ -88,15 +93,17 @@ public class HotelController {
         // Mendapatkan HotelModel sesuai dengan idHotel
         HotelModel hotel = hotelService.getHotelByIdHotel(idHotel);
 
-        // Mengecek apakah hotel dengan id tersebut ada
-        if(hotel != null){
-            hotel.setNoTelepon(noTelepon);
-        }
         // Add variabel HotelModel ke 'hotel' untuk dirender pada thymeleaf
         model.addAttribute("hotel", hotel);
 
-        return "noTeleponUpdate";
-
+        // Mengecek apakah hotel dengan id tersebut ada
+        if(hotel != null){
+            hotel.setNoTelepon(noTelepon);
+            return "noTeleponUpdate";
+        }
+        else{
+            return "notFound";
+        }
     }
 
     @RequestMapping("/hotel/delete/id-hotel/{idHotel}")
@@ -117,6 +124,15 @@ public class HotelController {
             return "notFound";
         }
 
+    }
+
+    @RequestMapping("/hotel/deleteAll")
+    public String deleteSemuaHotel(Model model){
+
+        // Menghapus semua instance Hotel
+        hotelService.deleteAllHotel();
+
+        return "deleteAllHotel";
     }
 
 

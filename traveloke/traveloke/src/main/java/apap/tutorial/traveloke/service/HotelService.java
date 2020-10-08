@@ -16,4 +16,7 @@ public interface HotelService {
 
     // Method untuk menghapus instance Hotel
     void deleteHotel(String idHotel);
+
+    // Method untuk menghapus semua instance Hotel
+    void deleteAllHotel();
 }
