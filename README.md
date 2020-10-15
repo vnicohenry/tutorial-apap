@@ -51,3 +51,35 @@ apa yang akan ditampilkan? Sertakan juga bukti screenshotmu.
 ### What I did not understand
 - Perbedaan @Requestmapping dan @Getmapping
 > Perbedaannya adalah jika requestmapping akan menerima parameter yang masuk dan akan routing sesuai parameter yang ditulis.
+
+### What I have learned today (9 Oct 2020)
+
+1. Pada _class_ `KamarDb`, terdapat _method_ `findAllByHotelId` , apakah kegunaan dari method tersebut?
+> _Method_ tersebut digunakan untuk mencari semua `Kamar` pada suatu `Hotel` yang sama berdasarkan ID `Hotel` tersebut
+
+2. Pada _class_ `HotelController` , jelaskan perbedaan _method_ `addHotelFormPage` dan `addHotelSubmit` ?
+> _Method_ `addHotelFormPage` digunakan untuk menampilkan _form_ untuk menambahkan hotel baru dimana _form_ tersebut digunakan untuk mengisi data-data terkait pembuatan hotel. Sedangkan _method_ `addHotelSubmit` adalah method yang untuk memproses data-data yang diinput sebelumnya dengan memasukkannya ke dalam _database_ `hotelDB`
+
+3. Jelaskan kegunaan dari JPA Repository !
+> __JPa Repository__ merupakan sebuah modul yang disediakan oleh Spring, dimana modul ini secara umum digunakan untuk aktivitas terkait _database_ dan _datastore_ pada project yang sedang dibangun. Dengan JPA Repository kita dapat membuat __repository interface__ untuk setiap _domain entity_ pada aplikasi.
+
+4. Sebutkan dan jelaskan di bagian kode mana sebuah relasi antara HotelModel dan KamarModel dibuat?
+> Kode tersebut berada pada _class_ `kamarModel` tepatnya pada potongan kode seperti di bawah ini:
+```java
+@ManyToOne(fetch=FetchType.EAGER, optional = false)
+@JoinColumn(name="hotelId", referencedColumnName = "id", nullable = false)
+@OnDelete(action=OnDeleteAction.CASCADE)
+@JsonIgnore
+private HotelModel hotel;
+```
+>Maksud dari `@ManyToOne` adalah ada banyak object `Kamar` yang bisa berelasi dengan satu object `Hotel`, dengan kata lain satu Hotel dapat memiliki banyak Kamar.
+
+
+5. Jelaskan kegunaan `FetchType.LAZY`, `CascadeType.ALL` , dan `FetchType.EAGER`!
+> - `FetchType.LAZY` digunakan oleh suatu objek untuk me-_load_ objek yang berelasi dengannya saat dipanggil saja (_on-demand_).
+>- `FetchType.EAGER` digunakan oleh suatu objek untuk me-_load_ objek yang berelasi dengannya bersamaan saat objek tersebut me-_load_ semua atributenya
+>- `CascadeType.ALL` memungkinkan kita untuk menggunakan semua operasi dari `EntityManager` yaitu `PERSIST, REMOVE, REFRESH, DETACH` pada semua objek yang berelasi pada objek tersebut.
+
+### What I did not understand
+- [ ] Gimana caranya bisa otomatis _increase_ ID Hotel dan nomor Kamar?
+- [ ] Gimana caranya bisa auto update / add tanpa perlu bikin object?
