@@ -2,10 +2,15 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <title>Delete Kamar</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
+
 <body>
-<h2 th:text="'Kamar dengan nomor Kamar ' + ${kamar.noKamar} + ' berhasil dihapus.'"></h2>
-<a th:href="@{/hotel/view?idHotel=}+${kamar.hotel.id}">Kembali</a>
+    <nav th:replace="fragments/fragment :: navbar"></nav>
+    <h2 th:text="${kamarCount} + ' kamar telah dihapus.'"></h2>
+<a class="btn btn-sm btn-primary" th:href="@{/hotel/view?idHotel=}+${idHotel}">Kembali</a>
 </body>
 
 </html>

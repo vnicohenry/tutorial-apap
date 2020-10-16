@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html xmlns:th="http://thymeleaf.org">
 <head>
-    <title>Add Kamar</title>
+    <title>404 Not Found</title>
+
     <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: csserror" th:remove="tag"></object>
     <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
-
 <body>
     <nav th:replace="fragments/fragment :: navbar"></nav>
     <div class="card text-center">
         <div class="card-header">
-            Sukses!
+            404 Error
         </div>
         <div class="card-body">
-            <h5 class="card-title" th:text="${jumlah} + ' kamar berhasil ditambahkan!'"></h5>
+            <h5 class="card-title">Halaman ini tidak ditemukan!</h5>
             <p class="card-text">Silahkan kembali ke halaman utama kami.</p>
             <a href="/" class="btn btn-primary">Halaman Utama</a>
         </div>

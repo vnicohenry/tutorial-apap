@@ -103,9 +103,17 @@ public class HotelController {
 
         model.addAttribute("hotel", hotel);
         model.addAttribute("idHotel", idHotel);
+        boolean hasKamar;
 
         if (hotel != null){
             List<KamarModel> listKamar = kamarService.findAllKamarByIdHotel(idHotel);
+            if(listKamar.isEmpty()){
+                hasKamar = false;
+            }
+            else{
+                hasKamar = true;
+            }
+            model.addAttribute("hasKamar",hasKamar);
             model.addAttribute("listKamar",listKamar);
             return "view-hotel";
         }
@@ -116,7 +124,7 @@ public class HotelController {
     }
 
 
-    @RequestMapping("/hotel/viewall")
+    @RequestMapping("/hotel/view-all")
     public String listHotel(Model model){
 
         // Mendapatkan semua HotelModel
