@@ -20,7 +20,7 @@ public class HotelServiceImpl implements HotelService{
     public void addHotel(HotelModel hotel) { hotelDb.save(hotel);}
 
     @Override
-    public List<HotelModel> getHotelList() { return hotelDb.findAll(Sort.by(Sort.Direction.DESC, "id")); }
+    public List<HotelModel> getHotelList() { return hotelDb.findAll(Sort.by(Sort.Direction.ASC, "id")); }
 
     @Override
     public HotelModel getHotelByIdHotel(Long idHotel) {

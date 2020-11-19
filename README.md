@@ -83,3 +83,31 @@ private HotelModel hotel;
 ### What I did not understand
 - [ ] Gimana caranya bisa otomatis _increase_ ID Hotel dan nomor Kamar?
 - [ ] Gimana caranya bisa auto update / add tanpa perlu bikin object?
+
+### What I have learned today (15 Oct 2020)
+
+1. Jelaskan perbedaan `th:include` dan `th:replace`!
+> `th:include` digunakan jika kita mau mengikutsertakan suatu konten ke dalam suatu tag pada html. Sedangkan, `th:replace` digunakan untuk mengganti keseluruhan isi tag dengan konten tersebut.
+
+2. Jelaskan apa fungsi dari th:object!
+> `th:object` berfungsi untuk mengambil sebuah object secara utuh beserta attribute-attribute yang dimiliki. Misalya kita mengambil _instance_ dari object `Buku` dengan cara `th:object="${buku}"`. Object ini memiliki atribut `judul`, `penulis`, `tahun terbit` dan kita ingin mengambil `judul` dari buku tersebut dapat dilakukan dengan `th:text="*{judul}"`. Hasilnya akan sama dengan `th:text="${buku.judul}"`.
+
+3. Jelaskan perbedaan dari * dan $ pada saat penggunaan th:object! Kapan harus dipakai?
+> Asterisk (`*`) dan dollar (`$`) sama-sama digunakan sebagai _Variable expressions_. Perbedaannya adalah Asterisk akan memanggil attribut dari _selected object_, tetapi jika tidak ada object yang dipilih, maka penggunaan asterisk dan dollar akan sama. 
+
+4. Bagaimana kamu menyelesaikan latihan nomor 3?
+> Pada file `fragment.html` yang sebelumnya dibuat, saya menambahkan kondisi (_if-else_) pada kode _navbar_ yang akan menyesuaikan dengan url yang sedang ditampilkan pada saat itu. Detail kodenya seperti di bawah ini:
+```html
+<div class="navbar-nav ml-auto">
+	<a th:if="${#httpServletRequest.requestURI == '/'}" class="nav-item nav-link active" th:href="@{/}">Home<span class="sr-only">(current)</span></a>
+	<a th:if="${#httpServletRequest.requestURI == '/hotel/view'}" class="nav-item nav-link active" th:href="@{/}">View Hotel<span class="sr-only">(current)</span></a>
+	<a th:if="${#httpServletRequest.requestURI == '/hotel/change'}" class="nav-item nav-link active" th:href="@{/}">Update Hotel<span class="sr-only">(current)</span></a>
+	<a th:if="${#httpServletRequest.requestURI == '/hotel/add'}" class="nav-item nav-link active" th:href="@{/}">Add Hotel<span class="sr-only">(current)</span></a>
+	<a th:if="${#httpServletRequest.requestURI == '/hotel/view-all'}" class="nav-item nav-link active" th:href="@{/}">View All Hotel<span class="sr-only">(current)</span></a>
+	<a th:if="${#httpServletRequest.requestURI == '/kamar/add'}" class="nav-item nav-link active" href="#">Add Kamar<span class="sr-only">(current)</span></a>
+	<a th:if="${#httpServletRequest.requestURI == '/kamar/change'}" class="nav-item nav-link active" th:href="@{/}">Update Kamar<span class="sr-only">(current)</span></a>
+</div>
+```
+
+### What I understand
+- Perlu adanya `params` sebagai _router_ jika kita ingin melakukan banyak perintah pada halaman yang sama.
