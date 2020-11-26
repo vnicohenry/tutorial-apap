@@ -111,3 +111,18 @@ private HotelModel hotel;
 
 ### What I understand
 - Perlu adanya `params` sebagai _router_ jika kita ingin melakukan banyak perintah pada halaman yang sama.
+
+
+### What I have learned today (19 Nov 2020)
+
+1. Apa itu Postman? Apa kegunaannya?
+> Postman merupakan _tools_ yang dapat digunakan untuk membantu pembuatan dan _testing_ **RESTful API**. Dengan menggunakan Postman, _developer_ tidak harus membuat semua code secara penuh untuk mengetahui _response_ dari API yang dibuat sehingga dapat mempercepat dan mempermudah proses _testing_ fungsionalitas dari API. Developer hanya perlu memasukan address yang ingin dituju beserta pilihan _response_ yang diinginkan, maka Postman akan menampilkan _response_ tersebut.
+
+2. Jelaskan fungsi dari anotasi @JsonIgnoreProperties dan @JsonProperty!
+> `@JsonIgnoreProperties` adalah anotasi yang digunakan untuk menekan serialisasi dari _properties_ pada saat _serialization_, atau meng-_ignore_ _processing_ dari JSON _properties_ pada saat serialization, atau meng-ignore processing dari JSON _properties_. Jika _field_ tersebut tidak terisi, _field_ JSON tersebut akan diabaikan dan tidak ada error yang dilemparkan. Sedangkan `@JsonProperty` merupakan anotasi yang berfungsi untuk mengubah nama variabel. `@JsonProperty` memberitahu Jackson ObjectMapper untuk memetakan nama property JSON ke bidang Java yang dianotasi.
+
+3. Apa kegunaan atribut WebClient?
+> `WebClient` merupakan _interface_ yang disediakan oleh Spring Framework yang berfungsi untuk poin akses utama dari web / HTTP requests. `WebClient` berfungsi untuk menginstansiasi sebuah akses poin URL serta mengelola request dan response atas URL tersebut
+
+4. Apa itu ResponseEntity dan BindingResult? Apa kegunaannya?
+> `ResponseEntity` digunakan untk merepresentasikan keseluruhan dari HTTP _Response_ yang mencangkup _status code_, _headers_, dan _body_. `ResponseEntity` dapat digunakan untuk melakukan konfigurasi pada HTTP _Response_. Sedangkan `BindingResult` merupakan sebuah _interface_ yang menyimpan hasil dari validasi maupun error yang ada. `BindingResult` perlu digunakan setelah `@Valid` untuk menampung hasil dari validasi.
