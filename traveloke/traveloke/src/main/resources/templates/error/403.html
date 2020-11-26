@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <title>403 Error</title>
+
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: csserror" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+</head>
+<body>
+<nav th:replace="fragments/fragment :: navbar"></nav>
+<div class="card text-center">
+    <div class="card-header">
+        403 Error
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Akses Tidak Diizinkan!</h5>
+        <p class="card-text">Silahkan kembali ke halaman utama kami.</p>
+        <a href="/" class="btn btn-primary">Halaman Utama</a>
+    </div>
+</div>
+</body>
+</html>

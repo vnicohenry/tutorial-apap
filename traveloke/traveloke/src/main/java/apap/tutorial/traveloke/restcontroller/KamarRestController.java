@@ -31,7 +31,6 @@ public class KamarRestController {
             @Valid @RequestBody KamarModel kamar,
             BindingResult bindingResult
     ){
-
         if(bindingResult.hasFieldErrors()){
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "Request body has invalid type or missing field"

@@ -126,3 +126,20 @@ private HotelModel hotel;
 
 4. Apa itu ResponseEntity dan BindingResult? Apa kegunaannya?
 > `ResponseEntity` digunakan untk merepresentasikan keseluruhan dari HTTP _Response_ yang mencangkup _status code_, _headers_, dan _body_. `ResponseEntity` dapat digunakan untuk melakukan konfigurasi pada HTTP _Response_. Sedangkan `BindingResult` merupakan sebuah _interface_ yang menyimpan hasil dari validasi maupun error yang ada. `BindingResult` perlu digunakan setelah `@Valid` untuk menampung hasil dari validasi.
+
+### What I have learned today (26 Nov 2020)
+
+1. Jelaskan secara singkat perbedaan Otentikasi dan Otorisasi ! Di bagian mana (dalam kode yang telah anda buat) konsep tersebut diimplementasi?
+> `Otentikasi` merupakan proses untuk memverifikasi siapa pengguna yang sedang berusaha untuk mengakses suatu program / _website_. Contoh pada tutorial adalah saat verifikasi user yang ingin login, kode ini berada file `UserDetailsServiceImpl.java`. Berikut adalah cuplikan kodenya:
+![image](https://user-images.githubusercontent.com/45789642/100362342-df1fd900-302d-11eb-93b6-166a2fed5764.png)
+Sedangkan `Otorisasi` merupakan proses pemberian akses terhadap pengguna tertentu. Contoh pada tutorial adalah pembatasan akses untuk **add kamar** yang hanya bisa dilakukan oleh _role_ `RECEPTIONIST`. Berikut adalah cuplikan kodenya:
+![image](https://user-images.githubusercontent.com/45789642/100362780-6ec58780-302e-11eb-880b-4770e4c32a4f.png)
+
+2. Apa itu BCryptPasswordEncoder ? Jelaskan secara singkat cara kerja dan tujuannya.
+> `BCryptPasswordEncoder` adalah fitur yang disediakan oleh Spring Boot sebagai mekanisme keamanan untuk mengenkripsi password sehingga tidak mudah terbaca oleh manusia dan sistem. Proses ini menggunakan algoritma `"one-way-hashing"` atau pengenkripsian satu arah, yang artinya ketika password sudah dienkripsi, maka tidak dapat lagi dikembalikan ke bentuk semula atau didekripsi.
+
+3. Jelaskan secara singkat apa itu UUID beserta penggunaannya!
+> `UUID` merupakan singkatan dari `Universally Unique Identifiers`, adalah angka 128 bit, yang terdiri dari 16 octets dan direpresentasikan dalam 32 base-16 karakter. UUID digunakan untuk mengidentifikasikan informasi pada sebuah sistem. UUID bersifat unique dan memiliki kemungkinan duplikasi yang rendah. Maka dari itu, UUID berguna sebagai _associative keys_ pada _database_. UUID dapat digenerate secara independent dan dapat digunakan pada seluruh sistem tanpa khawatir adanya duplikasi.
+
+4. Apa kegunaan class UserDetailsServiceImpl.java ? Mengapa harus ada class tersebut padahal kita sudah memiliki class UserRoleServiceImpl.java ?
+> `UserDetailsServiceImpl` secara umum digunakan untuk proses identifikasi user serta proses otentikasi dan otorisasi user. Class tersebut dibutuhkan secara khusus karena dapat berfungsi dalam hal **security**, sedangkan class `UserRoleServiceImpl` hanya berhubungan dengan operasi yang melibatkan _database_ saja.

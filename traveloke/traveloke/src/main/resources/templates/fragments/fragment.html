@@ -29,6 +29,7 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-item nav-link active" th:href="@{/}">Home <span class="sr-only">(current)</span></a>
+                    <a th:if="${#httpServletRequest.remoteUser}" class="nav-item nav-link pl-2" th:href="@{/user/updatePassword}">Update Password<span class="sr-only">(current)</span></a>
                 </div>
                 <div class="navbar-nav ml-auto">
                     <a th:if="${#httpServletRequest.requestURI == '/'}" class="nav-item nav-link active" th:href="@{/}">Home<span class="sr-only">(current)</span></a>
@@ -38,6 +39,9 @@
                     <a th:if="${#httpServletRequest.requestURI == '/hotel/view-all'}" class="nav-item nav-link active" th:href="@{/}">View All Hotel<span class="sr-only">(current)</span></a>
                     <a th:if="${#httpServletRequest.requestURI == '/kamar/add'}" class="nav-item nav-link active" href="#">Add Kamar<span class="sr-only">(current)</span></a>
                     <a th:if="${#httpServletRequest.requestURI == '/kamar/change'}" class="nav-item nav-link active" th:href="@{/}">Update Kamar<span class="sr-only">(current)</span></a>
+                </div>
+                <div class="navbar-nav pull-right">
+                    <a th:if="${#httpServletRequest.remoteUser}" class="nav-item nav-link active" th:href="@{/logout}">Logout</a>
                 </div>
 
 

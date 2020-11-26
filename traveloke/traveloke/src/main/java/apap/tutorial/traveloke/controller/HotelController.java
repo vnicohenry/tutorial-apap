@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Controller
 public class HotelController {
@@ -22,10 +21,10 @@ public class HotelController {
     @Autowired
     private KamarService kamarService;
 
-    @GetMapping("/")
-    private String home(){
-        return "home";
-    }
+//    @GetMapping("/")
+//    private String home(){
+//        return "home";
+//    }
 
     //Routing URL yang diinginkan
 //    @RequestMapping("/hotel/add")
