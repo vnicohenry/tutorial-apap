@@ -2,6 +2,7 @@ package apap.tutorial.traveloke.restcontroller;
 
 import apap.tutorial.traveloke.model.HotelModel;
 import apap.tutorial.traveloke.rest.HotelDetail;
+import apap.tutorial.traveloke.service.HospitalRestService;
 import apap.tutorial.traveloke.service.HotelAPIService;
 import apap.tutorial.traveloke.service.HotelRestService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class HotelRestController {
 
     @Autowired
     private HotelAPIService hotelAPIService;
+
+    @Autowired
+    private HospitalRestService hospitalRestService;
 
     @PostMapping(value = "/hotel")
     private HotelModel createHotel(
@@ -94,5 +98,10 @@ public class HotelRestController {
     @GetMapping(value="/hotel/find")
     private Mono<String> findCity(@RequestParam String city){
         return hotelAPIService.findHotelByCity(city);
+    }
+
+    @GetMapping(value="/hospital/find")
+    private Mono<String> findHospital(@RequestParam String city){
+        return hospitalRestService.findHospital(city);
     }
 }
