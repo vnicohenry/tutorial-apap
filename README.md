@@ -143,3 +143,104 @@ Sedangkan `Otorisasi` merupakan proses pemberian akses terhadap pengguna tertent
 
 4. Apa kegunaan class UserDetailsServiceImpl.java ? Mengapa harus ada class tersebut padahal kita sudah memiliki class UserRoleServiceImpl.java ?
 > `UserDetailsServiceImpl` secara umum digunakan untuk proses identifikasi user serta proses otentikasi dan otorisasi user. Class tersebut dibutuhkan secara khusus karena dapat berfungsi dalam hal **security**, sedangkan class `UserRoleServiceImpl` hanya berhubungan dengan operasi yang melibatkan _database_ saja.
+
+### What I have learned today (3 Dec 2020)
+
+1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot sebagai ilustrasi dari apa yang Anda jelaskan.
+**Latihan 1**
+Saya menambahkan type `Hidden` pada tag `<input>` pada component Item sehingga checkbox menjadi tidak terlihat tetapi tidak mengganggu fungsionalitas. Berikut adalah hasil kodenya:
+```Javascript
+<input
+	type="hidden"
+	className="ml-2"
+	checked={checked}
+	onChange={handleChange}
+/>
+```
+
+**Latihan 2**
+Saya membuat fungsi `clearFavorite` yang akan menghapus semua movie yang ada pada list favItems sehingga tidak ada lagi movie yang difavoritkan. Fungsi tersebut saya terapkan pada sebuah tombol. Ilustrasinya adalah seperti dibawah ini
+>Tampilan awal saat belum ada film yang menjadi favorit
+![image](https://user-images.githubusercontent.com/45789642/101026633-ba85ad00-35a9-11eb-85ca-c1586ef8587c.png)
+>Tampilan setelah ada film yang menjadi favorit, terdapat button `Delete Favorites`
+![image](https://user-images.githubusercontent.com/45789642/101026843-f882d100-35a9-11eb-90ee-5ce31ffea3db.png)
+>Jika tombol diklik maka semua List Favorit akan terhapus, dan tombol akan hilang
+![image](https://user-images.githubusercontent.com/45789642/101026633-ba85ad00-35a9-11eb-85ca-c1586ef8587c.png)
+
+**Latihan 3**
+Saya mengubah fungsi `handleItemClick` menjadi:
+```Javascript
+handleItemClick = (item) => {
+    const newItems = [ ...this.state.favItems];
+    const newItem = { ...item};
+
+    const targetInd = newItems.findIndex(it => it.id === newItem.id);
+
+    if (targetInd < 0) newItems.push(newItem);
+
+    this.setState({ favItems: newItems });
+};
+```
+dan menambahkan fungsi `handleFavClick` yang isinya merupakan kode `handleItemClick` yang ada pada tutorial. Saya juga membuat fungsi `toggleButton` yang mengatur mekanisme perubahan status dari `emptyFav`. Lalu saya mengubah mekanisme click pada list Movies dan list Favorites menjadi seperti ini:
+```Javascript
+<div className="col-sm">
+	<List
+		title="List Movies"
+		items={listMovies}
+		onItemClick={this.handleItemClick}
+	/>
+</div>
+<div className={`col-sm ${emptyFav ? "d-none" : "d-block"}`}>
+	<List
+		title="My Favorites"
+	items={favItems}
+	onItemClick={this.handleFavClick}
+	/>
+</div>
+```
+
+**Latihan 4**
+Saya menambahkan satu variable pada `state` di `App.js` dengan nama `emptyFav` yang berupa boolean untuk mengetahui kondisi film favorit ditampilkan atau tidak. Saya juga membuat fungsi `toggleButton` untuk yang digunakan pada checkbox, fungsinya agar user dapat memilih untuk menampilkan film favorit atau tidak. Interaksinya akan seperti di bawah ini.
+> Kondisi dimana sudah ada film yang menjadi favorit tetapi belum ditampilkan karena toggle masih off
+![image](https://user-images.githubusercontent.com/45789642/101027569-bc9c3b80-35aa-11eb-8bb3-d778c49a16a2.png)
+> Toggle diaktifkan maka film favorit menjadi terlihat
+![image](https://user-images.githubusercontent.com/45789642/101027673-e35a7200-35aa-11eb-8cb3-b45eec304f18.png)
+
+**Latihan 5**
+Saya membuat component baru dengan nama `EmptyState` yang berisi informasi jika belum ada film yang menjadi favorit. `EmptyState` tersebut akan dipanggil pada component `List`. Interaksinya seperti ini
+> Kondisi saat belum ada film favorit
+![image](https://user-images.githubusercontent.com/45789642/101027852-2a486780-35ab-11eb-8828-b7481246ded8.png)
+> Kondisi saat sudah ada film favorit, tulisan menjadi hilang
+![image](https://user-images.githubusercontent.com/45789642/101028193-45b37280-35ab-11eb-9678-57d3258c06c4.png)
+
+
+2. Menurut pemahaman kamu selama pengerjaan tutorial ini, apa perbedaan antara state dan props ?
+> `props` merupakan variable milik _child component_ yang berada pada _parent component_-nya. Contoh pada tutorial adalah pada component List terdapat props `item` yang merupakan variable milik component Item, dimana component Item adalah child dari component List. Sedangkan `state` merupakan variable yang dideklarasikan pada _component_-nya sendiri.
+
+3. Apa keuntungan menggunakan component (e.g. List, Item) di React? Berikan contohnya!
+> `Component` merupakan bagian-bagian kecil yang membentuk React secara utuh sesuai kemauan kita. Pada tutorial, contoh dari penerapan component adalah dengan membuat folder List, Item, dan EmptyState yang merupakan elemen-elemen dari website. Keuntungan menggunakan component adalah bagian-bagian tampilan menjadi bersifat independen dan dapat digunakan kembali jika memang dibutuhkan. Contoh penggunaan component:
+Kode dibawah merupakan component dari `EmptyState`
+```Javascript
+function EmptyState() {
+return (
+  <>
+    <h3>Belum ada item yang dipilih</h3>
+    <p>Klik salah satu item di daftar Menu/Produk</p>.
+  </>
+);
+}
+```
+Kemudian component tersebut digunakan pada component `List` dengan memanggil `<EmptyState />`
+
+4. Menurut kamu, apa saja kelebihan menggunakan React dalam pengembangan web?
+- [x] Terdiri dari berbagai komponen yang dapat digunakan kembali ketika dibutuhkan
+- [x] Memiliki javasript library di mana terdapat banyak sekali library JavaScript yang mampu memberikan lebih banyak fleksibilitas kepada pengembang web untuk memilih seperti yang diinginkan.
+- [x] Mudah untuk diuji dan mendebug kode.
+- [x] Website menjadi dinamis dan interaktif.
+- [x] Dapat meningkatkan kinerja menjadi lebih cepat dan lancar karena adanya DOM virtual.
+
+5. Menurut kamu, apa saja kekurangan menggunakan React dalam pengembangan web?
+- [x] Keterbatasan performa.
+- [x] Laju update atau pengembangan yang tinggi membuat React menjadi sulit untuk digunakan dalam jangka panjang karena selalu saja ada cara-cara baru untuk melakukan sesuatu.
+- [x] Dokumentasi yang buruk karena laju pengembangan yang tinggi, sehingga dokumentasi yang tepat sulit untuk ditentukan.
+- [x] Hanya meng-handle view layer terluar saja, atau UI, sehingga harus memiliki beberapa teknologi lain dalam mengembangkan suatu proyek.
