@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/v1")
 public class HotelRestController {
     @Autowired
@@ -34,7 +35,6 @@ public class HotelRestController {
             @Valid @RequestBody HotelModel hotel,
             BindingResult bindingResult
     ){
-
         if(bindingResult.hasFieldErrors()){
             throw new ResponseStatusException(
               HttpStatus.BAD_REQUEST, "Request body has invalied type or missing field"

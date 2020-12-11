@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
 
 @Configuration
 @EnableWebSecurity
@@ -19,17 +20,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http
+//                .cors().configurationSource(request -> new CorsConfiguration().applyPermitDefaultValues()).and()
                 .authorizeRequests()
                 .antMatchers("/css/**").permitAll()
                 .antMatchers("/js/**").permitAll()
-                .antMatchers("/hotel/**").hasAnyAuthority("RECEPTIONIST", "ADMIN")
-                .antMatchers("/kamar/add/**").hasAnyAuthority("RECEPTIONIST")
+                .antMatchers("/api/v1/**").permitAll()
+//                .antMatchers("/hotel/**").hasAnyAuthority("RECEPTIONIST", "ADMIN")
+//                .antMatchers("/kamar/add/**").hasAnyAuthority("RECEPTIONIST")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login").permitAll()
                 .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").permitAll();
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login").permitAll()
+                .and()
+                .cors()
+                .and()
+                .csrf()
+                .disable();
     }
     @Bean
     public BCryptPasswordEncoder encoder() { return new BCryptPasswordEncoder(); }
@@ -41,6 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .withUser("odading").password(encoder().encode("mangoleh"))
 //                .roles("USER");
 //    }
+
     @Autowired
     private UserDetailsService userDetailsService;
 
