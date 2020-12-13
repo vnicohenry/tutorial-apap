@@ -244,3 +244,37 @@ Kemudian component tersebut digunakan pada component `List` dengan memanggil `<E
 - [x] Laju update atau pengembangan yang tinggi membuat React menjadi sulit untuk digunakan dalam jangka panjang karena selalu saja ada cara-cara baru untuk melakukan sesuatu.
 - [x] Dokumentasi yang buruk karena laju pengembangan yang tinggi, sehingga dokumentasi yang tepat sulit untuk ditentukan.
 - [x] Hanya meng-handle view layer terluar saja, atau UI, sehingga harus memiliki beberapa teknologi lain dalam mengembangkan suatu proyek.
+
+### What I have learned today (10 Dec 2020)
+
+1. Ceritakan langkah - langkah yang kalian lakukan untuk solve LATIHAN no.1, dan mengapa kalian melakukan langkah - langkah tersebut?
+>Untuk mengerjakan latihan 1 saya menambahkan potongan kode seperti di bawah ini di dalam method `handleSubmitAddHotel` pada index.js di HotelList
+```JavaScript
+this.setState({
+	namaHotel: "",
+	alamat:"",
+	nomorTelepon:"",
+})
+```
+>Kode tersebut berfungsi untuk menghilang semua _input_ yang diberikan _user_ sebelumnya dan kode tersebut akan dieksekusi diakhir _method_.
+
+2. Jelaskan fungsi dari async dan await !
+>Pada dasarnya `async/await` digunakan untuk menulis kode yang sifatnya _asynchronous_ di Javascript. `async` digunakan pada awal definisi _function_ yang mengindikasikan kalau _function_ tersebut bersifat _asynchronous_. Sedangkan `await` merupakan ekspresi yang menghentikan sementara eksekusi _function_ `async` sampai terjadi suatu Promise, atau pada tutorial, sampai data tersebut berhasil di-_fetch_.
+
+3. Masukkan jawaban dari Screenshot yang diperintahkan di halaman 7 pada Component Lifecycle pada pertanyaan ini.
+![image](https://user-images.githubusercontent.com/45789642/101859387-38474b00-3b9e-11eb-98f8-faa740443f46.png)
+![image](https://user-images.githubusercontent.com/45789642/101859496-5614b000-3b9e-11eb-86c8-6be47277b354.png)
+![image](https://user-images.githubusercontent.com/45789642/101859522-6d539d80-3b9e-11eb-928b-4036887f9732.png)
+![image](https://user-images.githubusercontent.com/45789642/101859656-ba377400-3b9e-11eb-95d4-078953041491.png)
+![image](https://user-images.githubusercontent.com/45789642/101859935-3c279d00-3b9f-11eb-9171-8e143d3ee758.png)
+![image](https://user-images.githubusercontent.com/45789642/101859878-1d290b00-3b9f-11eb-98f1-0ddef251b9b8.png)
+![image](https://user-images.githubusercontent.com/45789642/101859889-25814600-3b9f-11eb-983a-df11eae9705e.png)
+![image](https://user-images.githubusercontent.com/45789642/101859983-595c6b80-3b9f-11eb-9f28-fc8ea7d9578f.png)
+
+4. Jelaskan fungsi dari `componentDidMount`, `shouldComponentUpdate`, `componentDidUpdate`, `componentWillReceiveProps`, `componentWillUnmount`.
+Notes : Penjelasan harus mencantumkan “kapan fungsi dipanggil” dan “ use case apa saja yang biasanya menggunakan lifecycle method tersebut”.
+>`componentDidMount` adalah _method lifecycle_ untuk meng-_update_ suatu _state_. _Method_ ini dipanggil tepat setelah fungsi `render()` dieksekusi. _Use case_ yang menggunakan _method_ tersebut adalah "meng-_update_ data".
+>`shouldComponentUpdate` adalah _method_ yang memberikan output _boolean_. _Method_ ini dipanggil sebelum _rendering_, tepatnya saat _state_ atau _props_ baru.  _Use case_ yang menggunakan _method_ ini adalah saat _output component_ yang terpengaruh dengan perubahan pada _state_ atau _props_.
+>`componentDidUpdate` adalah _method_ yang memberitahu jika ada _component_ yang di-_update_. _Method_ ini dipanggil tepat setelah terjadinya _update_. _Use case_ yang menggunakan _method_ ini adalah saat ada _component_ yang ter-_update_.
+>`componentWillReceiveProps` adalah _method_ yang dipanggil tepat setelah _props_ di-_update_ sebelum _render_ lain dieksekusi.
+>`componentWillUnmount` adalah _method_ yang dipanggil tepat sebelum _component_ di-_unmounted_ dan dibuang. _Use case_ yang menggunakan _method_ ini adalah ketika ingin membersihkan suatu _method_.
